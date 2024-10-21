@@ -1,15 +1,16 @@
 enum VehicleCategory { Public, Private }
 
 abstract class Vehicle {
-  String _name;  
-  double _speed; 
-  VehicleCategory _category; 
+  String _name;
+  double _speed;
+  VehicleCategory _category;
 
   Vehicle(this._name, this._speed, this._category);
 
   String get name => _name;
 
   double get speed => _speed;
+
   void setSpeed(double speed) {
     if (speed >= 0) {
       _speed = speed;
@@ -23,22 +24,23 @@ abstract class Vehicle {
 
 class Car extends Vehicle {
   int numberOfSeats;
+  Car(String name, double speed, VehicleCategory category, this.numberOfSeats)
+      : super(name, speed, category);
 
-  /**TODO: Implement constructor of car**/
   @override
   String getDetails() {
-    /**TODO: Implement this function**/
+    return 'Car: Name: $_name, Speed: $_speed km/h, Category: $_category, Number of Seats: $numberOfSeats';
   }
 }
 
 class Bus extends Vehicle {
   int capacity;
-
-  /**TODO: Implement constructor of bus**/
+  Bus(String name, double speed, VehicleCategory category, this.capacity)
+      : super(name, speed, category);
 
   @override
   String getDetails() {
-    /**TODO: Implement this function**/
+    return 'Bus: Name: $_name, Speed: $_speed km/h, Category: $_category, Capacity: $capacity';
   }
 }
 
@@ -49,7 +51,7 @@ class VehicleFactory {
     required String name,
     required double speed,
     required VehicleCategory category,
-    required dynamic extra, //Extra information
+    required dynamic extra, // Extra information
   }) {
     switch (type.toLowerCase()) {
       case 'car':
